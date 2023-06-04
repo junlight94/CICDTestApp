@@ -22,3 +22,4 @@ jobs: # job 설정
       - run: fastlane test --verbose # fastlane 실행
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          GIT_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
