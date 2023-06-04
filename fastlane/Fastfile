@@ -17,7 +17,7 @@ lane :test do
   
   # match를 실행하여 인증서 및 프로파일 불러오기
     match(
-      git_basic_authorization: 'junlight94@gmail.com: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'
+      git_basic_authorization: 'junlight94@gmail.com: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',
       git_url: "git@github.com:junlight94/certification_repo.git",
       storage_mode: "git",
       type: "appstore",
