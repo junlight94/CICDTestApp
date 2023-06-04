@@ -12,6 +12,12 @@ jobs: # job 설정
 #         with:
 #           key: ${{ secrets.SSH_KEY }}
 #           known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - name: Configure SSH keys    
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
       - uses: actions/setup-node@v2 # node 설치
         with:
           node-version: '14'
