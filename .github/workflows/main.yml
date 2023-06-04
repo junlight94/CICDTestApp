@@ -1,0 +1,23 @@
+on: # 이벤트 감지
+  push: # [push, commit, pullrequest]
+    branches: # 브랜치
+    - main
+
+jobs: # job 설정
+  build:
+    runs-on: macos-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - uses: shimataro/ssh-key-action@v2 # shimataro/ssh-key-action@v2 ssh 인증
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - uses: actions/setup-node@v2 # node 설치
+        with:
+          node-version: '14'
+      - uses: ruby/setup-ruby@v1 # ruby 설치
+        with:
+          ruby-version: '3'
+      - run: brew install fastlane # fastlane 설치
+      - run: fastlane test # fastlane 실행
+        #env: fastlane에서 사용할 환경변수 설정 가능
