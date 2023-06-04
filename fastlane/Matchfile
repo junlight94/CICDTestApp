@@ -1,0 +1,8 @@
+git_url("git@github.com:junlight94/certification_repo.git")
+
+storage_mode("git")
+
+type("appstore")
+
+app_identifier("com.junlight.CICDTestApp")
+username(ENV["APPLE_ID"])

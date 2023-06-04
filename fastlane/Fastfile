@@ -1,23 +1,56 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
-default_platform(:ios)
-
-platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
-  end
+lane :test do
+  # keychain 초기화
+    create_keychain(
+      name: ENV["KEYCHAIN_NAME"],
+      password: ENV["KEYCHAIN_PASSWORD"],
+      timeout: 1800,
+      default_keychain: true,
+      unlock: true,
+      lock_when_sleeps: false
+    )
+  # appstoreconnect apikey 정보
+  app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_API_ISSUER_ID"],
+      key_content: ENV["APP_STORE_CONNECT_API_KEY_CONTENT"]
+    )
+  
+  # match를 실행하여 인증서 및 프로파일 불러오기
+    match(
+      git_url: "git@github.com:junlight94/certification_repo.git",
+      storage_mode: "git",
+      type: "appstore",
+      readonly: true,
+      keychain_name: ENV["KEYCHAIN_NAME"],
+      keychain_password: ENV["KEYCHAIN_PASSWORD"]
+    )
+  
+  # 빌드 및 내보내기 🏗
+    gym(
+      workspace: ENV["XCWORKSPACE"],
+      scheme: ENV["PRODUCTION_SCHEME"],
+      export_options: {
+        method: "app-store",
+        signingStyle: "manual"
+      }
+    )
+  # testflight 업로드
+    upload_to_testflight
 end
+
+  # slack 노티
+  after_all do |lane|
+    
+    slack(
+      message: "앱이 성공적으로 배포되었습니다.",
+      slack_url: "슬랙 훅스 링크",
+      )
+  end
+  
+  # 에러 발생 시 호출 됨
+  error do |lane, exception|
+    slack(
+      message: "앱 배포에 실패했습니다.",
+      slack_url: "슬랙 훅스 링크",
+      )
+  end
