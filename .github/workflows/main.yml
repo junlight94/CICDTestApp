@@ -8,10 +8,10 @@ jobs: # job 설정
     runs-on: macos-latest
     steps: 
       - uses: actions/checkout@v2
-      - uses: shimataro/ssh-key-action@v2 # shimataro/ssh-key-action@v2 ssh 인증
-        with:
-          key: ${{ secrets.SSH_KEY }}
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+#       - uses: shimataro/ssh-key-action@v2 # shimataro/ssh-key-action@v2 ssh 인증
+#         with:
+#           key: ${{ secrets.SSH_KEY }}
+#           known_hosts: ${{ secrets.KNOWN_HOSTS }}
       - uses: actions/setup-node@v2 # node 설치
         with:
           node-version: '14'
