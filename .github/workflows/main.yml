@@ -18,7 +18,7 @@ jobs: # job 설정
       - uses: ruby/setup-ruby@v1 # ruby 설치
         with:
           ruby-version: '3'
-      - run: sudo xcode-select -s
+      - run: sudo xcode-select -s /Applications/Xcocde_14.2.app
       - run: |
           echo "$ {{ secrets.SSH_PUBLIC }}"
           chmod 644 ~/ .ssh/id_rsa.pub
