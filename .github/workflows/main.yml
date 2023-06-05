@@ -18,6 +18,13 @@ jobs: # job 설정
       - uses: ruby/setup-ruby@v1 # ruby 설치
         with:
           ruby-version: '3'
+      - run: |
+          echo "$ {{ secrets.SSH_PUBLIC }}"
+          chmod 644 ~/ .ssh/testcicd.pub
+          echo "$ {{ secrets.SSH_KEY }}"
+          chmod 600 ~/ .ssh/testcicd
+          eval "$(ssh-agent -s)"
+          echo "Host *.github.com\n\tAddKeysToAgent yes\n\tIgnoreUnknown UseKeychain\n\tIdentityFile ~/.ssh/testcicd"
       - run: brew install fastlane # fastlane 설치
       - run: fastlane test --verbose # fastlane 실행
         env:
