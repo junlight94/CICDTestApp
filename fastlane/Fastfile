@@ -28,6 +28,10 @@ lane :test do
     #   keychain_name: ENV["KEYCHAIN_NAME"],
     #   keychain_password: ENV["MATCH_PASSWORD"]
     # )
+    match(
+      git_basic_authorization: Base64.strict_encode64("junlight94@gmail.com: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")
+    )
+
     sync_code_signing(
       type: "appstore",
       app_identifier: "com.junlight.CICDTestApp",
