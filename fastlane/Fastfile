@@ -19,14 +19,14 @@ lane :test do
   # match를 실행하여 인증서 및 프로파일 불러오기
     match(
       # clone_branch_directly = true,
-      git_basic_authorization: Base64.encode64("anVubGlnaHQ5NEBnbWFpbC5jb206Z2hwX1NndVJBUnpVOU1MYUhtQmtWSTNzSldWaGIxOVFOTDJBV1dFSg=="),
+      git_basic_authorization: Base64.encode64("junlight94@gmail.com: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"),
       # git_private_key: ENV["GIT_PRIVATE_KEY"],
       git_url: "git@github.com:junlight94/certification_repo.git",
       storage_mode: "git",
       type: "appstore",
       readonly: true,
       keychain_name: ENV["KEYCHAIN_NAME"],
-      keychain_password: ENV["KEYCHAIN_PASSWORD"]
+      keychain_password: ENV["MATCH_PASSWORD"]
     )
 
   # cert, sign 방법의 인증
