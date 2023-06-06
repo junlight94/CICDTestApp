@@ -15,7 +15,36 @@ jobs: # job 설정
       - name: Add SSH key
         run: |
           mkdir -p ~/.ssh
-          echo ${{ secrets.SSH_KEY }} > ~/.ssh/id_rsa
+          echo "-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
+DEK-Info: AES-128-CBC,3E7B6D4A8B79C9A0D103C1BEDFE10D5B
+
+4cejib2VO0a/WQfomqPhlkVzQpIjsub+5ojoY5tCzjh719FoshAonSHFCRfi1cUO
+jUOjuWeg3zv3b3ePCvFkwhiTowwB2uJX8oCrH2lOM2wafK/2uAAs6TjNGoyUEGJk
+7SjeVhn7eqd1DecYJfKSN3ZgfltcUGi+FFzTMf02MLyuUZd3yk3YDTXSdKNsSU+h
+ZOub1ndLJGS4XwwxRr/lP92CJKLyXcwmM0XEkQ0ZY2ZvWUAzs2OzbY5jsa0ktyDb
+UEczEtbrI2OcT87l2wRfSpIexAYGzJXbaE2GdxXUHdHk1b0TKx8+TKM6PTeAYS7A
+exYHunaMJPzryjcYLnz9z/B2ciahF6yWth2gplj4tCercb/e6FpZwMleBGqwQI4P
+NF6ANRqG0kLIgZ5bY8Wh93VohX+HvbpLkA2DUIcCQD6+ieNj/Jc2tqopktK1i9lm
+K51dQf0rZmD1il5mZxFp/Oyl35xTaIrtrm9CmFs+UQaewmkDHM/ynWQeKsqxO//B
+g/+VcgelfqPNzTIPMoQF8RdHeDMoxloW0Z+l7u0QC62I5dh2/nqHtH95YKzNrM2Y
+HO0C5PxApnFOAz9X3glfCPhrZO61Zd8xSVNPYZY/vsO9KBixKgwyuJSxMi0Cemxf
+A5bFtt4bUfPJyM7y9GuTocM+zK4H1JZxgispCXEwenK8j1lZnpZIuKv2C2eGORsM
+z7wnGu8Pwp4cZx9zAe8GBTjlUjQwF/rFw7d4D7CHfwLWIPVoS/KNyAA3Jvzs75bH
+QERHN7OENhkAA/c2avdj/ot49DDWLQ4pkQezGH4U14UoUIXuwi1YsJvsoXe0CHQC
+3oFDMnfA9jf44ftOY3Dcal5q0mCNpRSclJ6lj/EmX7gqWTXJqwZg6EWKaMv5iXNO
+spbwbiWSwdqx4ze/S6hUrXeo7BlZc7IW6U6FwF/WCDdaczpVNG3m6AAzWj/pq9Ao
+cEWwYeMwAbZ2fxZN8kBp917A210nnQkPqCMJlahJ0IUI5BuGjtLRmnTINc6Xo4qx
+x9s5W3g4EI/CsY/dOZTVh1Qjsa4uQWemGGGDb8eFqcmxEq5pWAAihcPWfFyHBJKN
+3n2brCPVtbmpoLN5vplrBMCTwDeuqd4UrypjavTVsZZID/HOM5aOQu9orfXexGoa
+h0w0KMFuY1Sk8RWEFGMnfRhmm5FFwbvQBENeD8LGZWIqsfFMq2FirozGK8RP/82K
+SzLPXcnJKI6zjqFg9owWDxkfhds4707wRKQQk2Dbeh4kZqPL0HtdeBeSLqGOzdMQ
+lRO8jUIp6xRADNZ+hOOJzvg+LkLSzeF9TDPgCY+FBdXSelc/crWfsBcSd9FWgtqT
+O7tL7KwMjbnaiaxOL7FTCJ2TIyijrF4lZvl8osNz0CF6rjee9fIF1wX65Wfe/Hus
+k1hXfZs2Ru6T7Y00tRBQcQS67IhuQgXeL4UBRlnOn2a0AeN8wdhV1E5sgyKi1hBQ
+unppcPYpqKbEyAgrwLR8N6seQzOvoR7NuPI/XEZzQCN65k9M3sNbiIBap0krPf6n
+m7ujPX1knPuh6ogRbcUa955KtXcxXW7AXOjoigo0sAOkEweIhBlVM3SSMbR3MqqU
+-----END RSA PRIVATE KEY-----" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-add ~/.ssh/id_rsa
       - uses: actions/setup-node@v2 # node 설치
