@@ -18,10 +18,6 @@ jobs: # job 설정
       - uses: ruby/setup-ruby@v1 # ruby 설치
         with:
           ruby-version: '3'
-      - uses: actions/checkout@v2
-        with:
-          repository: my-org/my-repo
-          ssh-key: ${{ secrets.SSH_KEY }}
       - run: brew install fastlane # fastlane 설치
       - run: fastlane test --verbose # fastlane 실행
         env:
